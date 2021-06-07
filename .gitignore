@@ -2,3 +2,4 @@
 *.env
 .vscode/
 Matlab-hw/*.zip
+*.code-workspace
