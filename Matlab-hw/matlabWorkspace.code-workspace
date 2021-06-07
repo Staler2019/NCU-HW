@@ -1,0 +1,19 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "..\\..\\..\\..\\My Files\\Study\\大二下\\星期一 程式語言\\Handouts"
+    },
+    {
+      "path": "..\\..\\..\\..\\My Files\\Study\\大二下\\星期一 程式語言\\HW"
+    }
+  ],
+  "settings": {
+    "files.associations": {
+      "*.m": "matlab",
+      "vector": "cpp"
+    }
+  }
+}

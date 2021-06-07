@@ -1,0 +1,77 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'PulseIn'
+Slack : 0.079
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'UD'
+Slack : 0.298
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'UD'
+Slack : 0.174
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'PulseIn'
+Slack : 0.393
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'UD'
+Slack : -3.000
+TNS   : -8.612
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'PulseIn'
+Slack : -3.000
+TNS   : -4.403
+
+Type  : Slow 1200mV 0C Model Setup 'PulseIn'
+Slack : 0.158
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'UD'
+Slack : 0.358
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'UD'
+Slack : 0.151
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'PulseIn'
+Slack : 0.351
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'UD'
+Slack : -3.000
+TNS   : -8.612
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'PulseIn'
+Slack : -3.000
+TNS   : -4.403
+
+Type  : Fast 1200mV 0C Model Setup 'PulseIn'
+Slack : 0.596
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'UD'
+Slack : 0.673
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'UD'
+Slack : 0.072
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'PulseIn'
+Slack : 0.149
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'UD'
+Slack : -3.000
+TNS   : -7.357
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'PulseIn'
+Slack : -3.000
+TNS   : -4.083
+
+------------------------------------------------------------
