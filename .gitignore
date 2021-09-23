@@ -3,3 +3,4 @@
 .vscode/
 Matlab-hw/*.zip
 *.code-workspace
+*.exe
