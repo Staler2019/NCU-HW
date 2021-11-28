@@ -1,3 +1,4 @@
-*.lex.yy.c
+*.yy.c
 *.out
 *.in
+*.err

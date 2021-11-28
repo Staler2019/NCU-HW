@@ -1,6 +1,6 @@
-/.history
+**/.history
 *.env
-.vscode/
+# .vscode/
 Matlab-hw/*.zip
-*.code-workspace
+# *.code-workspace
 *.exe
