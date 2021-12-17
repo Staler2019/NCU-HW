@@ -1,2 +1,3 @@
-/interpreter smli
-/testcase
+smli
+/test_data
+testdata_ans.pdf
