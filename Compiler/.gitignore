@@ -3,3 +3,7 @@
 *.in
 *.err
 **/.vscode
+*.yy.out
+*.tab.c
+*.tab.h
+*.tab.o
