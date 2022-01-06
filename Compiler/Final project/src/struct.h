@@ -9,8 +9,13 @@ extern "C" {
 int yylex(void);
 }
 
+struct Node {
+    Node *left;
+    Node *right;
+};
+
 struct Type_UNION {
-}
+};
 
 #define YYSTYPE Type_UNION
 

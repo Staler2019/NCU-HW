@@ -8,10 +8,14 @@ extern "C"{
     };
 }
 // belows are the same with the original
+/* my naming rule:
+nonterminals    : nonterminal+
+nonterminal_s   : nonterminal*
+*/
 %}
 %token  PLUS MINUS MULTIPLY DIVIDE MODULUS GREATER SMALLER EQUAL AND OR NOT DEFINE FUN IF SEPARATOR LETTER NUMBER ID BOOL_VAL LEFT_BRACKET RIGHT_BRACKET
 %token  PRINT_NUM PRINT_BOOL
-%token  program stmts stmt exp def_stmt print_stmt variable num_op logical_op fun_exp fun_call if_exp exps id_s param_s last_exp
+%token  program stmts stmt exp def_stmt print_stmt variable num_op logical_op fun_exp fun_call if_exp exps id_s param_s param
 %%
 program     : stmts
             ;
@@ -60,12 +64,12 @@ id_s        : ID id_s
             |
             ;
 fun_call    : LEFT_BRACKET fun_exp param_s RIGHT_BRACKET
-            | LEFT_BRACKET { /*fun_name*/ }ID param_s{ /*!fun_name*/ } RIGHT_BRACKET
+            | LEFT_BRACKET { /*fun_name*/ }ID param_s RIGHT_BRACKET
             ;
 param_s     : param param_s
             |
             ;
-last_exp    : exp { /*TODO. what is this statement doing?*/ }
+param       : exp
             ;
 if_exp      : LEFT_BRACKET IF { /*test_exp*/ }exp { /*than_exp*/ }exp { /*else_exp*/ }exp RIGHT_BRACKET
             ;

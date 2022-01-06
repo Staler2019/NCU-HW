@@ -11,7 +11,7 @@ divide          /
 modulus         "mod"
 greater         >
 smaller         <
-equAL           =
+equal           =
 and             "and"
 or              "or"
 not             "not"
@@ -27,5 +27,26 @@ bool-val        "#t"|"#f"
 left_bracket    "("
 right_bracket   ")"
 %%
-
+{plus}
+{minus}
+{multiply}
+{divide}
+{modulus}
+{greater}
+{smaller}
+{equal}
+{and}
+{or}
+{not}
+{define}
+{fun}
+{if}
+{separator}
+{letter}
+{digit}
+{number}
+{ID}
+{bool-val}
+{left_bracket}
+{right_bracket}
 %%
