@@ -16,7 +16,7 @@ CFLAGS		:= -ll
 
 SNAME		:= struct
 FNAME 		:= myMiniLisp
-TNAME		:= 06_2.lsp
+TNAME		:= 02_1.lsp
 OBJS		:= yacc.tab.o lex.yy.o
 PROCESS		:= $(FNAME)
 
@@ -26,7 +26,8 @@ FERR		:= error.err
 .PHONY: all clean
 
 all: $(PROCESS)
-	./$(PROCESS) < $(FTEST) 2> $(FERR)
+	# ./$(PROCESS) < $(FTEST) 2> $(FERR)
+	./$(PROCESS) < $(FTEST)
 
 $(PROCESS): $(OBJS)
 	$(CC) -o $(PROCESS) $(OBJS) $(CFLAGS)

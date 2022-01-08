@@ -1,8 +1,6 @@
 %{
 // struct settings
 #include "struct.h"
-// #include <bits/stdc++.h>
-// using namespace std;
 extern "C"{
     void yyerror(const char* message) {
         // printf("syntax error\n");
@@ -11,9 +9,98 @@ extern "C"{
 }
 
 // my code
-// Node root(nullptr, nullptr, nullptr);
-// Node root;
+#define elif else if
+#define notNullptrGoCal(n)      \
+            if(n != nullptr) {  \
+                cal(n);         \
+            }
+// fun
+Node *createNptr(Node *left, Node *right) {
+    Node *n = (Node *)malloc(sizeof(Node *));
+    n->left = left;
+    n->right = right;
+    n->type = 0;
+    n->bval = 0;
+    // n->strval = "";
+    // cerr << "success" << endl;
+    n->ival = 0;
+    // n->op_type = "";
+    return n;
+}
 
+void nodeConstructError() {
+    cerr << "node construction error" << endl;
+    exit(0);
+}
+
+
+int cal(Node *now) {
+    int type = now->getType();
+    int left, right;
+    switch (type) {
+        case 0: {  // operator
+            string opType = now->getOPType();
+            if (opType == "") nodeConstructError();
+
+            if (opType == "pn") {  // print number
+                left = cal(now->left);
+                cout << left << endl;
+                notNullptrGoCal(now->right);
+            }
+            elif (opType == "pb") {  // print bool
+                bool left = (bool)(cal(now->left));
+                cout << ((left) ? "#t" : "#f") << endl;
+                notNullptrGoCal(now->right);
+            }
+
+            left = cal(now->left);
+            right = cal(now->right);
+            if (opType == "+") {
+                return left + right;
+            }
+            elif (opType == "-") { return left - right; }
+            elif (opType == "*") { return left * right; }
+            elif (opType == "/") { return left / right; }
+
+            break;
+        }
+        case 1: {  // int
+            return now->ival;
+            break;
+        }
+        case 2:  // bool //TODO. not ready
+            return now->bval;
+            break;
+        case 3: // string
+            break;
+        default: {
+            nodeConstructError();
+            break;
+        }
+    }
+
+    return 0;  // todo.
+}
+
+void printNode(Node *n, int dense){
+    string pre = "";
+    for(int i = 0; i < dense; i++){
+        pre += "\t";
+    }
+    cerr << pre << n->getType() << " ";
+    if(!n->getType()) cerr << n->getOPType();
+    cerr << endl;
+    if(n->left!=nullptr)
+        printNode(n->left, dense+1);
+    if(n->right!=nullptr)
+        printNode(n->right, dense+1);
+    // if(n->type) cout << n->type << endl;
+
+}
+
+// var
+Node* root;
+vector<Node*> fun_table;
 
 // belows are the same with the original
 /* my naming rule:
@@ -25,33 +112,54 @@ nonterminal_s   : nonterminal*
 %token  <bval>      BOOL_VAL
 %token  <strval>    ID
 %token  PLUS MINUS MULTIPLY DIVIDE MODULUS GREATER SMALLER EQUAL AND OR NOT DEFINE FUN IF LEFT_BRACKET RIGHT_BRACKET PRINT_NUM PRINT_BOOL
-%type   program stmts stmt exp def_stmt print_stmt num_op fun_exp fun_ids fun_body fun_name fun_call
+%type   <nval>      program stmts stmt exp def_stmt print_stmt num_op fun_exp fun_ids fun_body fun_name fun_call
 %type   <nval>      variable id_s exps param_s param
 %type   <nval>      plus minus multiply divide modulus greater smaller equal if_exp test_exp than_exp else_exp logical_op and_op or_op not_op
 %%
 program:
     stmts {
-        // root = $1;
+        root = $1;
     }
     ;
 stmts:
-    stmt stmts
-    |
+    stmt stmts {
+        $$ = createNptr($1, $2);
+        $$->setOP("stmt");
+    }
+    | { $$ = nullptr; }
     ;
 stmt:
-    exp
-    | def_stmt
-    | print_stmt
+    exp {
+        $$ = $1;
+    }
+    | def_stmt {
+        $$ = $1;
+    }
+    | print_stmt {
+        $$ = $1;
+    }
     ;
 print_stmt:
-    LEFT_BRACKET PRINT_NUM exp RIGHT_BRACKET
-    | LEFT_BRACKET PRINT_BOOL exp RIGHT_BRACKET
+    LEFT_BRACKET PRINT_NUM exp RIGHT_BRACKET {
+        $$ = createNptr($3, nullptr);
+        $$->setOP("pn");
+        // cerr << "setup number" << $1 << endl;
+    }
+    | LEFT_BRACKET PRINT_BOOL exp RIGHT_BRACKET {
+        $$ = createNptr($3, nullptr);
+        $$->setOP("pb");
+    }
     ;
 exp:
     BOOL_VAL {
-        // $$ =
+        $$ = createNptr(nullptr, nullptr);
+        $$->setValue('b', $1);
     }
-    | NUMBER
+    | NUMBER {
+        $$ = createNptr(nullptr, nullptr);
+        // cerr << "setup number" << $1 << endl;
+        $$->setValue('i', $1);
+    }
     | variable
     | num_op
     | logical_op
@@ -161,6 +269,9 @@ else_exp:
 %%
 int main(){
     yyparse();
+
+    printNode(root,0);
+    cal(root);
 
     return 0;
 }

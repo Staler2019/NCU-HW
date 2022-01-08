@@ -12,15 +12,39 @@ int yylex(void);
 struct Node {
     Node *left;
     Node *right;
-    Node *parent;
-    string type;
-    void *value;
+    int type = 0;
+    bool bval = 0;
+    string strval = "";
+    int ival = 0;
+    string op_type = "";
 
-    Node(Node *left, Node *right, Node *parent) {
-        left = left;
-        right = right;
-        parent = parent;
-    };
+    void setValue(char type, int a) {  // contain bool
+        switch (type) {
+            case 'i':
+                this->type = 1;
+                this->ival = a;
+                break;
+            case 'b':
+                this->type = 2;
+                this->bval = (bool)a;
+                break;
+        }
+    }
+
+    void setValue(char type, string s) {
+        switch (type) {
+            case 's':
+                this->type = 3;
+                this->strval = s;
+                break;
+        }
+    }
+
+    void setOP(string op) { this->op_type = op; }
+
+    int getType() { return this->type; }
+
+    string getOPType() { return this->op_type; }
 };
 
 struct Type_UNION {
