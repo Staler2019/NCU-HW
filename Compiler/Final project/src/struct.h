@@ -12,11 +12,16 @@ int yylex(void);
 struct Node {
     Node *left;
     Node *right;
+    Node *parent;
 };
 
 struct Type_UNION {
+    bool bval;
+    int ival;
+    string strval;
+    Node *nval;
 };
 
 #define YYSTYPE Type_UNION
 
-#endif // !_STRUCT_HPP_
+#endif  // !_STRUCT_HPP_
