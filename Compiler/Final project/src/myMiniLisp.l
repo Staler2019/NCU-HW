@@ -5,14 +5,14 @@
 #include <string.h>
 // belows are the same with the original
 %}
-plus            \+
-minus           -
-multiply        \*
-divide          /
+plus            "+"
+minus           "-"
+multiply        "*"
+divide          "/"
 modulus         "mod"
-greater         >
-smaller         <
-equal           =
+greater         ">"
+smaller         "<"
+equal           "="
 and             "and"
 or              "or"
 not             "not"
@@ -22,8 +22,8 @@ if              "if"
 separator       [\t\n\r ]
 letter          [a-z]
 digit           [0-9]
-number          0|[1-9]digit*|-[1-9]digit*
-ID              letter(letter|digit|-)*
+number          0|[1-9]{digit}*|-[1-9]{digit}*
+ID              {letter}({letter}|{digit}|-)*
 bool-val        "#t"|"#f"
 left_bracket    "("
 right_bracket   ")"
@@ -44,7 +44,7 @@ right_bracket   ")"
 {if}            { return IF; }
 {separator}     { ; }
 {number}        { yylval.ival = atoi(yytext); return NUMBER; }
-{ID}            { yylval.strval = str(yytext); return ID; }
+{ID}            { yylval.strval = yytext; return ID; }
 {bool-val}      {
     if(strcmp(yytext, "#t") == 0)
         yylval.bval = true;
@@ -54,4 +54,5 @@ right_bracket   ")"
 }
 {left_bracket}  { return LEFT_BRACKET; }
 {right_bracket} { return RIGHT_BRACKET; }
+.               { ; }
 %%

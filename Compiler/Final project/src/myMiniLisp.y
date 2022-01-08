@@ -1,15 +1,18 @@
 %{
 // struct settings
 #include "struct.h"
+// #include <bits/stdc++.h>
+// using namespace std;
 extern "C"{
     void yyerror(const char* message) {
         // printf("syntax error\n");
-        cerr << message << endl;
+        cout << message << endl;
     };
 }
 
 // my code
-Node *root = nullptr;
+// Node root(nullptr, nullptr, nullptr);
+// Node root;
 
 
 // belows are the same with the original
@@ -22,12 +25,14 @@ nonterminal_s   : nonterminal*
 %token  <bval>      BOOL_VAL
 %token  <strval>    ID
 %token  PLUS MINUS MULTIPLY DIVIDE MODULUS GREATER SMALLER EQUAL AND OR NOT DEFINE FUN IF LEFT_BRACKET RIGHT_BRACKET PRINT_NUM PRINT_BOOL
-%token  program stmts stmt exp def_stmt print_stmt num_op fun_exp fun_ids fun_body fun_name fun_call
-%token  <nval>      variable id_s exps param_s param
-%token  <nval>      plus minus multiply divide modulus greater smaller equal if_exp test_exp than_exp else_exp logical_op and_op or_op not_op
+%type   program stmts stmt exp def_stmt print_stmt num_op fun_exp fun_ids fun_body fun_name fun_call
+%type   <nval>      variable id_s exps param_s param
+%type   <nval>      plus minus multiply divide modulus greater smaller equal if_exp test_exp than_exp else_exp logical_op and_op or_op not_op
 %%
 program:
-    stmts
+    stmts {
+        // root = $1;
+    }
     ;
 stmts:
     stmt stmts
@@ -43,7 +48,9 @@ print_stmt:
     | LEFT_BRACKET PRINT_BOOL exp RIGHT_BRACKET
     ;
 exp:
-    BOOL_VAL
+    BOOL_VAL {
+        // $$ =
+    }
     | NUMBER
     | variable
     | num_op
@@ -63,7 +70,9 @@ num_op:
     | equal
     ;
 plus:
-    LEFT_BRACKET PLUS exp exps RIGHT_BRACKET
+    LEFT_BRACKET PLUS exp exps RIGHT_BRACKET {
+
+    }
     ;
 minus:
     LEFT_BRACKET MINUS exp exp RIGHT_BRACKET

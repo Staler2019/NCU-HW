@@ -13,6 +13,14 @@ struct Node {
     Node *left;
     Node *right;
     Node *parent;
+    string type;
+    void *value;
+
+    Node(Node *left, Node *right, Node *parent) {
+        left = left;
+        right = right;
+        parent = parent;
+    };
 };
 
 struct Type_UNION {
