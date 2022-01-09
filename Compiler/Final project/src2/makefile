@@ -8,13 +8,15 @@ LFLAGS	:= -c -g
 INC 	:= -I..
 
 FNAME 	:= main
-FTEST	:= input.in
+FTEST	:= ../0109/0109/06_2_hidden.lsp
+# FTEST	:= input.in
 FERR	:= error.err
 
 .PHONY: all clear clean
 
 all: $(FNAME)
-	./$(FNAME) < $(FTEST) 2> $(FERR)
+	# ./$(FNAME) < $(FTEST) 2> $(FERR)
+	./$(FNAME) < $(FTEST)
 
 $(FNAME): yacc.tab.o lex.yy.o
 	$(CC) -o $(FNAME) $(FNAME).tab.o lex.yy.o -ll

@@ -25,6 +25,8 @@ ID              {letter}({letter}|{digit}|-)*
 bool-val        "#t"|"#f"
 left_bracket    "("
 right_bracket   ")"
+print_num       "print-num"
+print_bool      "print-bool"
 %%
 {plus}          { return PLUS; }
 {minus}         { return MINUS; }
@@ -42,15 +44,17 @@ right_bracket   ")"
 {if}            { return IF; }
 {separator}     { ; }
 {number}        { yylval.ival = atoi(yytext); return NUMBER; }
-{ID}            { yylval.strval = yytext; return ID; }
+{print_num}     { return PRINT_NUM; }
+{print_bool}    { return PRINT_BOOL; }
 {bool-val}      {
     if(strcmp(yytext, "#t") == 0)
-        yylval.bval = true;
+        yylval.ival = 1;
     else if (strcmp(yytext, "#f") == 0)
-        yylval.bval = false;
+        yylval.ival = 0;
     return BOOL_VAL;
 }
 {left_bracket}  { return LEFT_BRACKET; }
 {right_bracket} { return RIGHT_BRACKET; }
+{ID}            { yylval.sval = strdup(yytext); return ID; }
 .               { ; }
 %%
