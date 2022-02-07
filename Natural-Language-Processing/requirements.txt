@@ -1,0 +1,14 @@
+tensorflow
+numpy
+matplotlib
+pandas
+chardet
+opencc-python-reimplemented
+nltk
+jieba
+wordcloud
+scikit-learn
+graphviz
+ipykernel
+Flask
+line-bot-sdk

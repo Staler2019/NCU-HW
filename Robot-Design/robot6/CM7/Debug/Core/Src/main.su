@@ -1,0 +1,10 @@
+ServoControl.h:1:6:robotInit	88	static
+ServoControl.h:9:5:robot_control_cmd	40	static
+ServoControl.h:35:5:robotRotate	40	static
+ServoControl.h:42:5:robot_putDown	32	static
+ServoControl.h:49:5:robot_pcikUp	32	static
+main.c:73:5:main	72	static
+main.c:220:6:SystemClock_Config	312	static
+main.c:272:13:MX_USART2_UART_Init	8	static
+main.c:313:13:MX_GPIO_Init	56	static
+main.c:381:6:Error_Handler	4	static,ignoring_inline_asm

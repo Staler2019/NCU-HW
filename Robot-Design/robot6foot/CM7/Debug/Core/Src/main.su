@@ -1,0 +1,14 @@
+ServoControl_18.h:1:6:robotInit	176	static
+ServoControl_18.h:9:5:robot_control_cmd	40	static
+ServoControl_18.h:35:5:robotForward	392	static
+ServoControl_18.h:49:5:robotBackward	392	static
+ServoControl_18.h:64:5:robotTurnLeft	392	static
+ServoControl_18.h:79:5:robotTurnRight	392	static
+ServoControl_18.h:95:5:robotTransverseLeft	536	static
+ServoControl_18.h:114:5:robotTransverseRight	536	static
+main.c:65:5:robotWaveHands	248	static
+main.c:94:5:main	24	static
+main.c:188:6:SystemClock_Config	312	static
+main.c:240:13:MX_USART2_UART_Init	8	static
+main.c:283:13:MX_GPIO_Init	56	static
+main.c:352:6:Error_Handler	4	static,ignoring_inline_asm
