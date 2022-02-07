@@ -1,0 +1,24 @@
+{
+    "name": "EchoBot1",
+    "description": "",
+    "services": [
+        {
+            "type": "endpoint",
+            "name": "http://localhost:3978/api/messages",
+            "id": "3f1d3cf0-6c35-11ec-9135-a32eeeb03047",
+            "appId": "",
+            "appPassword": "",
+            "endpoint": "http://localhost:3978/api/messages"
+        },
+        {
+            "type": "endpoint",
+            "endpoint": "http://localhost:3978/api/messages",
+            "name": "LUIS_Bot Bot",
+            "id": "89"
+        }
+    ],
+    "padlock": "",
+    "version": "2.0",
+    "path": "D:\\Development\\DevProjects\\iot\\bot_luis\\EchoBot1.bot",
+    "overrides": null
+}

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iot_keywordRecog", "iot_keywordRecog\iot_keywordRecog.csproj", "{AFE81030-FC21-44A1-94AC-A47F6F6134C9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AFE81030-FC21-44A1-94AC-A47F6F6134C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFE81030-FC21-44A1-94AC-A47F6F6134C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFE81030-FC21-44A1-94AC-A47F6F6134C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFE81030-FC21-44A1-94AC-A47F6F6134C9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AC89BAF3-496B-476F-9B95-B69D110E0105}
+	EndGlobalSection
+EndGlobal

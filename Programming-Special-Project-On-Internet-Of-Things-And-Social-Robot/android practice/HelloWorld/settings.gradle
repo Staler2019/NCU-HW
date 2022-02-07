@@ -1,0 +1,2 @@
+rootProject.name = "IOT HelloWorld"
+include ':app'
