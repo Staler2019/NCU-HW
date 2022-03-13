@@ -3,10 +3,14 @@ import time
 import requests
 from pathlib import Path
 import hashlib
+import json
+import re
+from six import u
 
-TIME_WAITING_PERIOD = 1
+TIME_WAITING_PERIOD = 0.5
 DATA_FOLDER = "./data"
 HASH_TABLE_FILE = "./hash_table.txt"
+HASH_TABLE = []
 
 
 def crawler_each():
@@ -84,7 +88,7 @@ def write_json_to_file(js):
         "w",
         encoding="UTF-8",
     ) as f:
-        print(js, file=f)
+        json.dump(js, f)
 
     if js["hash"] not in HASH_TABLE:
         HASH_TABLE.append(js["hash"])
@@ -94,6 +98,21 @@ def write_json_to_file(js):
             HASH_TABLE_FILE, "a", encoding="UTF-8"
         ) as f:
             print(js["hash"], file=f)
+
+
+def content_filter(content):
+    expr = re.compile(
+        u(
+            r"[^\u4e00-\u9fa5\u3002\uff1b\uff0c\uff1a\u201c\u201d\uff08\uff09\u3001\uff1f\u300a\u300b\s\w:/-_.?~%()]"
+        )
+    )
+
+    filtered = re.sub(expr, "", content)
+    filtered = [_s for _s in filtered.split("\n")]
+    content = " ".join(filtered)
+    content = re.sub(r"(\s)+", " ", content)
+
+    return content
 
 
 def parse(resp):
@@ -132,6 +151,8 @@ def parse(resp):
         else:
             content = content + my_tt.text
 
+    content = content_filter(content)
+
     _json = {
         "url": url,
         "hash": sha,
@@ -139,23 +160,32 @@ def parse(resp):
         "content": content,
     }
 
+    print(_json)
+
     return _json
 
 
 def crawler(times):
     for i in range(times):
-        print(i, end=" ")
-        crawler_each()
-        time.sleep(TIME_WAITING_PERIOD - 0.5)
-        if i % 4 == 0:
-            time.sleep(2)
+        print(i + 1, end=" ")
+        while True:
+            try:
+                crawler_each()
+                time.sleep(TIME_WAITING_PERIOD)
+                break
+            except requests.exceptions.ReadTimeout:
+                pass
+            except requests.exceptions.ConnectionError:
+                pass
+            time.sleep(TIME_WAITING_PERIOD)
+        if (i + 1) % 3 == 0:
+            time.sleep(TIME_WAITING_PERIOD * 4)
 
 
 if __name__ == "__main__":
     # create folder if not exist
     Path(DATA_FOLDER).mkdir(parents=True, exist_ok=True)
 
-    HASH_TABLE = []
     try:
         # read hash table file
         with open(
