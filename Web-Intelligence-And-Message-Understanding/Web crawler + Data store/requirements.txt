@@ -1,7 +1,0 @@
-pyqt5
-elasticsearch==7.11.0
-requests
-BeautifulSoup4
-# selenium
-# lxml
-# html5lib
