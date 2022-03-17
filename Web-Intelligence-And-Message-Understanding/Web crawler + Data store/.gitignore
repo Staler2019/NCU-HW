@@ -1,8 +1,13 @@
+# folder
 .idea/*
 .bk/*
-tmp.txt
-crawler_output.txt
-crawler_test_output.txt
-__pycache__/*
+**/__pycache__/*
 data/*
-hash_table.txt
+answer/*
+
+# file type
+*.txt
+view/*.py
+
+# specific file
+tmp.py

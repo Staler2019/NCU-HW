@@ -3,6 +3,8 @@ import json
 
 from numpy import indices
 
+# from main import print_to_logger
+
 DATA_FOLDER = "./data"
 HASH_TABLE_FILE = "./hash_table.txt"
 HASH_TABLE = []
@@ -11,11 +13,15 @@ qa_mapping = {
     "properties": {
         "url": {"type": "text"},
         "hash": {"type": "text"},
-        "title": {"type": "keyword"},
+        "title": {
+            "type": "text",
+            "analyzer": "ik_max_word",
+            "search_analyzer": "ik_smart",
+        },
         "content": {
             "type": "text",
-            "analyzer": "ik_smart",
-            "search_analyzer": "ik_max_word",
+            "analyzer": "ik_max_word",
+            "search_analyzer": "ik_smart",
         },
     }
 }
@@ -45,19 +51,23 @@ def read_data():
             yield js
 
     except IOError:
-        print("Please run crawler first~")
+        str = "Please run crawler first~"
+        # print_to_logger('a', str)
+        print(str)
         exit()
 
 
 def load2_elasticsearch():
-    index_name = "wiki_qa_v2"
+    index_name = "wiki_qa"
     type = "one_to_one"
     es = Elasticsearch()
 
     # Create index
     if not es.indices.exists(index=index_name):
         es.indices.create(index=index_name)
-    print("Index created!")
+    str = "Index created!"
+    # print_to_logger('a', str)
+    print(str)
 
     # Put mapping into index
     if not es.indices.exists_type(
@@ -69,7 +79,9 @@ def load2_elasticsearch():
             body=qa_mapping,
             include_type_name=True,
         )
-    print("Mappings created!")
+    str = "Mappings created!"
+    # print_to_logger('a', str)
+    print(str)
 
     # Import data to elasticsearch
     success, _ = helpers.bulk(
@@ -79,7 +91,9 @@ def load2_elasticsearch():
         doc_type=type,
         ignore=400,
     )
-    print("success:", success)
+    str = "success: {}".format(success)
+    # print_to_logger("a", str)
+    print(str)
 
 
 if __name__ == "__main__":

@@ -40,7 +40,9 @@ def to_url(url):
         timeout=3,
     )
     if resp.status_code != 200:
-        print("Invalid url:", resp.url)
+        str = "Invalid url: {}".format(resp.url)
+        # print_to_logger("a", str)
+        print(str)
     return resp
 
 
@@ -123,6 +125,7 @@ def parse(resp):
 
     # title
     title = soup.h1.text
+    # print_to_logger("a", title)
     print(title)
     # get sha256
     sha_obj = hashlib.sha256()
@@ -160,14 +163,16 @@ def parse(resp):
         "content": content,
     }
 
-    print(_json)
+    # print(_json)
 
     return _json
 
 
-def crawler(times):
+def crawler(times, stop):
     for i in range(times):
-        print(i + 1, end=" ")
+        str = "{}".format(i + 1)
+        # print_to_logger("a", str, end=" ")
+        print(str, end=" ")
         while True:
             try:
                 crawler_each()
@@ -178,11 +183,13 @@ def crawler(times):
             except requests.exceptions.ConnectionError:
                 pass
             time.sleep(TIME_WAITING_PERIOD)
+        if stop():
+            return
         if (i + 1) % 3 == 0:
             time.sleep(TIME_WAITING_PERIOD * 4)
 
 
-if __name__ == "__main__":
+def crawler_run(times, stop):
     # create folder if not exist
     Path(DATA_FOLDER).mkdir(parents=True, exist_ok=True)
 
@@ -194,14 +201,19 @@ if __name__ == "__main__":
             HASH_TABLE = [
                 line[:-1] for line in f.readlines()
             ]
-            print(
-                "Found {} data in history".format(
-                    len(HASH_TABLE)
-                )
+            str = "Found {} data in history".format(
+                len(HASH_TABLE)
             )
+            # print_to_logger("w", str)
+            print(str)
     except IOError:
-        print(
-            f"{HASH_TABLE_FILE} is not exist! Then it will be created this time. "
-        )
+        str = f"{HASH_TABLE_FILE} is not exist! Then it will be created this time."
+        # print_to_logger("w", str)
+        print(str)
 
-    crawler(times=10000)
+    crawler(times, stop)
+
+
+if __name__ == "__main__":
+    stop_thread = False
+    crawler_run(10000, lambda: stop_thread)
