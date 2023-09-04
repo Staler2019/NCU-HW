@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="ExternalProjectImportWizard">
+		<item key="WizardProjectsImportPage.STORE_NESTED_PROJECTS" value="true"/>
+	</section>
+	<section name="SmartImportWizard">
+		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
+		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
+		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="D:\Dev\IDEs-default\STM32\hongwenjun stm32h753 master Examples-1-Leds"/>
+			<item value="D:\Development\stm32h745\robot-design\robotDesign_fp"/>
+			<item value="D:\Development\stm32h745\robot-design\robot6"/>
+			<item value="D:\Development\stm32h745\robot-design\FinalProject"/>
+			<item value="D:\Development\IDEs-default\STM32\robot6Hands"/>
+			<item value="D:\Development\IDEs-default\STM32\uart_putty"/>
+		</list>
+	</section>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="654"/>
+		<item key="DIALOG_Y_ORIGIN" value="337"/>
+	</section>
+</section>

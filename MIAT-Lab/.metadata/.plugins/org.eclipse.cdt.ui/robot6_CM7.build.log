@@ -1,0 +1,26 @@
+12:05:16 **** Incremental Build of configuration Debug for project robot6_CM7 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DCORE_CM7 -DDEBUG -DSTM32H745xx -c -I../Core/Inc -I../../Drivers/STM32H7xx_HAL_Driver/Inc -I../../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I../../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I../../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+In file included from ../Core/Src/main.c:27:0:
+../Core/Inc/ServoControl.h: In function 'robotInit':
+../Core/Inc/ServoControl.h:6:5: warning: implicit declaration of function 'robot_control_cmd' [-Wimplicit-function-declaration]
+     robot_control_cmd(huart, servo_amount, arrive_time, servo_list, servo_pwm_list);
+     ^~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "robot6_CM7.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\Development\stm32h745\robot-design\robot6\CM7\STM32H745ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="robot6_CM7.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+c:\program files\st\stm32cubeide_1.5.1\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.5.0.202011040924\tools\arm-none-eabi\bin\ld.exe: warning: cannot find entry symbol Reset_Handler; defaulting to 0000000008000000
+Finished building target: robot6_CM7.elf
+ 
+arm-none-eabi-objdump -h -S  robot6_CM7.elf  > "robot6_CM7.list"
+arm-none-eabi-objcopy  -O binary  robot6_CM7.elf  "robot6_CM7.bin"
+arm-none-eabi-size   robot6_CM7.elf 
+   text	   data	    bss	    dec	    hex	filename
+     88	      8	   1568	   1664	    680	robot6_CM7.elf
+Finished building: default.size.stdout
+ 
+Finished building: robot6_CM7.list
+Finished building: robot6_CM7.bin
+ 
+ 
+
+12:05:18 Build Finished. 0 errors, 2 warnings. (took 2s.78ms)
+
